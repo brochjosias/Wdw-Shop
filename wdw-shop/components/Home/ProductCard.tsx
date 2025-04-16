@@ -1,9 +1,13 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Product } from "@/typing";
 import { StarIcon, ShoppingBag, Heart } from "lucide-react"; // Corrigido a importação
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { Button } from "../ui/button";
+import { useDispatch, useSelector } from "react-redux";
+import { addItem } from "@/store/cartSlice";
+import { RootState } from "@/store/store";
 
 type Props = {
   product: Product;
@@ -12,6 +16,12 @@ type Props = {
 const ProductCard = ({ product }: Props) => {
   const num = Math.round(product.rating.rate);
   const ratingArray = new Array(num).fill(0);
+
+  const dispatch = useDispatch();
+
+  const addToCartHandler = (product: Product) => {
+    dispatch(addItem(product));
+  };
 
   return (
     <div className="p-4">
@@ -57,7 +67,12 @@ const ProductCard = ({ product }: Props) => {
       </div>
       {/* Buttons */}
       <div className="mt-4 flex items-center space-x-2">
-        <Button size="icon">
+        <Button
+          onClick={() => {
+            addToCartHandler(product);
+          }}
+          size={"icon"}
+        >
           <ShoppingBag size={18} />
         </Button>
         <Button size="icon" className="bg-red-500">
