@@ -1,3 +1,5 @@
+"use client";
+
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { Product } from "@/typing";
 import { StarIcon, ShoppingBag, Heart } from "lucide-react"; // Corrigido a importação
