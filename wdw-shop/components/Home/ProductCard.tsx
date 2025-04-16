@@ -10,6 +10,7 @@ import { Button } from "../ui/button";
 import { useDispatch, useSelector } from "react-redux";
 import { addItem } from "@/store/cartSlice";
 import { RootState } from "@/store/store";
+import { toast } from "sonner";
 
 type Props = {
   product: Product;
@@ -22,6 +23,13 @@ const ProductCard = ({ product }: Props) => {
   const dispatch = useDispatch();
 
   const addToCartHandler = (product: Product) => {
+    toast.success("Item Added to Cart", {
+      description: `${product.title}`,
+      // action: { // Opcional: adicionar ação
+      //   label: "Undo",
+      //   onClick: () => console.log("Undo clicked"),
+      // },
+    });
     dispatch(addItem(product));
   };
 
