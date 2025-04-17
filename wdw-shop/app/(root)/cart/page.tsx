@@ -5,11 +5,14 @@ import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/store/store";
 import { Button } from "@/components/ui/button";
-import { CartItem, addItem, removeItem } from "@/store/cartSlice"; // Corrigido aqui!
+import { CartItem, addItem, clearCart, removeItem } from "@/store/cartSlice";
 import { useUser } from "@clerk/nextjs";
+import PayPalButton from "@/components/Helper/PayPalButton";
+import { useRouter } from "next/navigation"; // Updated import
 
 const Cart = () => {
-  const dispatch = useDispatch(); // Corrigido aqui!
+  const router = useRouter();
+  const dispatch = useDispatch();
 
   const items = useSelector((state: RootState) => state.cart.items);
 
@@ -37,6 +40,11 @@ const Cart = () => {
   // Remove item handler
   const removeItemHandler = (id: number) => {
     dispatch(removeItem({ id }));
+  };
+
+  const handleSuccess = () => {
+    router.push("/success");
+    dispatch(clearCart());
   };
 
   return (
@@ -145,7 +153,12 @@ const Cart = () => {
                   </Button>
                 </Link>
               )}
-              {user && <Button className="w-full bg-orange-500">Paypal</Button>}
+              {user && (
+                <PayPalButton
+                  amount={totalPriceWithVat}
+                  onSuccess={handleSuccess}
+                />
+              )}
             </div>
           </div>
         </div>
