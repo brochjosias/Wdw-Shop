@@ -1,8 +1,44 @@
+"use client";
 import { getAllCategory } from "@/Request/requests";
-import React from "react";
+import { Loader } from "lucide-react";
+import React, { useState } from "react";
 
-const Category = async () => {
-  const categories: string[] = await getAllCategory();
+interface CategoryProps {
+  onSelectCategory: (category: string | null) => void;
+}
+
+const Category = ({ onSelectCategory }: CategoryProps) => {
+  const [categories, setCategories] = useState<string[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+
+  React.useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const data: string[] = await getAllCategory();
+        setCategories(data);
+      } catch (error) {
+        console.error(error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchCategories();
+  }, []);
+
+  const handleCategoryClick = (category: string | null) => {
+    setSelectedCategory(category);
+    onSelectCategory(category);
+  };
+
+  if (loading) {
+    return (
+      <div className="pt-16 pb-12 flex justify-center">
+        <Loader size={32} className="animate-spin" />
+      </div>
+    );
+  }
 
   return (
     <div className="pt-16 pb-12">
@@ -10,14 +46,31 @@ const Category = async () => {
         Shop by category
       </h1>
 
-      {/* Define grid */}
-      <div className="mt-12 w-4/5 mx-auto grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+      <div className="mt-8 w-4/5 mx-auto grid grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+        {/* Botão All Products */}
+        <div
+          onClick={() => handleCategoryClick(null)}
+          className={`p-3 rounded-lg cursor-pointer text-center hover:scale-105 transition-all duration-300 shadow-md ${
+            selectedCategory === null ? "bg-blue-500 text-white" : "bg-gray-200"
+          }`}
+        >
+          <h1 className="text-xs sm:text-sm font-medium capitalize">
+            All Products
+          </h1>
+        </div>
+
+        {/* Demais categorias */}
         {categories.map((category) => (
           <div
             key={category}
-            className="p-6 rounded-lg cursor-pointer text-center hover:scale-110 transition-all duration-300 bg-gray-200 shadow-md"
+            onClick={() => handleCategoryClick(category)}
+            className={`p-3 rounded-lg cursor-pointer text-center hover:scale-105 transition-all duration-300 shadow-md ${
+              selectedCategory === category
+                ? "bg-blue-500 text-white"
+                : "bg-gray-200"
+            }`}
           >
-            <h1 className="text-sm sm:text-base md:text-lg capitalize font-bold">
+            <h1 className="text-xs sm:text-sm font-medium capitalize">
               {category}
             </h1>
           </div>

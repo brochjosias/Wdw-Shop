@@ -1,21 +1,28 @@
 "use client";
-import { getAllProduct } from "@/Request/requests";
+import { getAllProduct, getProductByCategory } from "@/Request/requests";
 import { Product } from "@/typing";
 import { Loader } from "lucide-react";
 import React, { useEffect, useState } from "react";
 import ProductCard from "./ProductCard";
 
-const AllProduct = () => {
+interface AllProductProps {
+  selectedCategory?: string | null;
+}
+
+const AllProduct = ({ selectedCategory }: AllProductProps) => {
   const [products, setProducts] = useState<Product[] | null>(null);
   const [loading, setLoading] = useState(true);
-
-  console.log(products);
 
   useEffect(() => {
     const getData = async () => {
       setLoading(true);
       try {
-        const products: Product[] = await getAllProduct();
+        let products: Product[];
+        if (selectedCategory) {
+          products = await getProductByCategory(selectedCategory);
+        } else {
+          products = await getAllProduct();
+        }
         setProducts(products);
       } catch (error) {
         console.error(error);
@@ -25,11 +32,15 @@ const AllProduct = () => {
     };
 
     getData();
-  }, []);
+  }, [selectedCategory]);
 
   return (
     <div className="pt-16 pb-12">
-      <h1 className="text-center font-bold text-2xl">All Products</h1>
+      <h1 className="text-center font-bold text-2xl">
+        {selectedCategory
+          ? selectedCategory.charAt(0).toUpperCase() + selectedCategory.slice(1)
+          : "All Products"}
+      </h1>
       {loading ? (
         <div className="flex justify-center items-center mt-16">
           <Loader size={32} className="animate-spin" />
