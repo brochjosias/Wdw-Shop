@@ -12,12 +12,12 @@ const Footer = () => {
             WDW Shop
           </h1>
           <p className="text-sm text-black opacity-60">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet
-            odit veniam necessitatibus in quas soluta neque enim voluptas vero
-            consectetur!
+            WDW Shop is a leading online shopping company in Singapore,
+            Malaysia, Thailand, Taiwan, Indonesia, Vietnam and the Philippines.
+            In 2025, it expanded its e-commerce services to Brazil.
           </p>
           <p className="text-base mt-6 text-black opacity-80">
-            {"+000"} 1234 5678 90 - info@example.com
+            wdwshop@gmail.com
           </p>
         </div>
 

@@ -22,7 +22,6 @@ const Cart = () => {
     setIsClient(true);
   }, []);
 
-  // Evitar cálculos durante SSR
   const cartCalculations = isClient
     ? {
         totalQuantity: items.reduce((total, item) => total + item.quantity, 0),
@@ -86,55 +85,61 @@ const Cart = () => {
           </Link>
         </div>
       ) : (
-        <div className="md:w-4/5 w-[95%] mx-auto grid grid-cols-1 xl:grid-cols-6 gap-12">
-          <div className="rounded-lg shadow-md overflow-hidden xl:col-span-4">
-            <h1 className="p-4 text-xl sm:text-2xl md:text-3xl font-bold text-white bg-blue-700">
-              Your Cart ({cartCalculations.totalQuantity} Items)
-            </h1>
-            {items.map((item) => (
-              <div
-                key={item.id}
-                className="pb-6 mt-2 p-5 border-b-[1.5px] border-opacity-25 border-gray-700"
-              >
-                <div className="flex items-center gap-8">
-                  <Image
-                    src={item.image}
-                    alt={item.title}
-                    width={180}
-                    height={180}
-                    className="flex-shrink-0"
-                  />
-                  <div>
-                    <h1 className="md:text-xl text-base font-bold text-black">
-                      {item.title}
-                    </h1>
-                    <h1 className="md:text-lg text-sm font-semibold">
-                      Category: {item.category}
-                    </h1>
-                    <h1 className="md:text-2xl text-lg font-bold text-blue-950">
-                      ${item.price}
-                    </h1>
-                    <h1 className="md:text-lg text-sm font-semibold">
-                      Quantity: {item.quantity}
-                    </h1>
-                    <div className="flex items-center mt-4 gap-2">
-                      <Button
-                        className="bg-green-600 hover:bg-green-700"
-                        onClick={() => addItemHandler(item)}
-                      >
-                        Add More
-                      </Button>
-                      <Button
-                        variant="destructive"
-                        onClick={() => removeItemHandler(item.id)}
-                      >
-                        Remove
-                      </Button>
+        <div className="md:w-4/5 w-[95%] mx-auto grid grid-cols-1 xl:grid-cols-6 gap-8">
+          {/* SEÇÃO DO CARRINHO (APENAS ESSA PARTE FOI MODIFICADA) */}
+          <div className="rounded-lg shadow-lg overflow-hidden xl:col-span-4 border border-gray-200 bg-white">
+            <div className="bg-gradient-to-r from-blue-600 to-blue-800 p-5">
+              <h1 className="text-xl sm:text-2xl font-bold text-white">
+                Your Cart ({cartCalculations.totalQuantity} Items)
+              </h1>
+            </div>
+
+            <div className="divide-y divide-gray-200">
+              {items.map((item) => (
+                <div key={item.id} className="p-6">
+                  <div className="flex gap-6 items-start">
+                    <Image
+                      src={item.image}
+                      alt={item.title}
+                      width={120}
+                      height={120}
+                      className="rounded-lg border border-gray-200 flex-shrink-0"
+                    />
+                    <div className="flex-1">
+                      <h2 className="text-lg font-semibold text-gray-900">
+                        {item.title}
+                      </h2>
+                      <p className="text-sm text-gray-500 mt-1">
+                        Category: {item.category}
+                      </p>
+                      <p className="text-lg font-bold text-blue-700 mt-2">
+                        ${item.price.toFixed(2)}
+                      </p>
+                      <p className="text-sm font-medium mt-2">
+                        Quantity: {item.quantity}
+                      </p>
+
+                      <div className="mt-4 flex gap-3">
+                        <Button
+                          size="sm"
+                          className="bg-green-600 hover:bg-green-700 text-white"
+                          onClick={() => addItemHandler(item)}
+                        >
+                          Add More
+                        </Button>
+                        <Button
+                          size="sm"
+                          variant="destructive"
+                          onClick={() => removeItemHandler(item.id)}
+                        >
+                          Remove
+                        </Button>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
 
           <div className="xl:col-span-2">

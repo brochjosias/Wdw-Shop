@@ -1,6 +1,7 @@
 import React from "react";
 import Image from "next/image";
-import { Button } from "../ui/button"; // ajuste o caminho se necessário
+import { Button } from "../ui/button";
+import Link from "next/link";
 
 const Hero = () => {
   return (
@@ -14,18 +15,22 @@ const Hero = () => {
             <span className="text-orange-500">60%</span> off
           </h1>
           <p className="text-sm md:text-base lg:text-lg text-black text-opacity-70 mt-4">
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Fuga
-            soluta sed justo voluptates labore, porro molestias quaerat a
-            consequuntur dolorem! Libero unde, justo officiis sapiente veniam ab
-            aperiam ad alias.
+            Enjoy a convenient and seamless online shopping experience to find
+            products anytime, anywhere. With strong payment and delivery
+            support, WDW Shop wants to make it easier and safer for you to shop
+            online. And that’s not all! We offer a Money Back Guarantee, which
+            means your money is protected and only released to the sellers when
+            you receive your order.
           </p>
           <div className="flex mt-6 items-center space-x-4">
-            <Button size="lg" className="bg-blue-700 cursor-pointer">
-              Shop Now
-            </Button>
-            <Button size="lg" className="cursor-pointer">
-              Explore More
-            </Button>
+            <Link href="#categories" passHref>
+              <Button
+                size="lg"
+                className="bg-blue-700 cursor-pointer hover:bg-blue-800 transition-colors"
+              >
+                Shop Now
+              </Button>
+            </Link>
           </div>
         </div>
 
