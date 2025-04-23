@@ -7,15 +7,25 @@ import { Product } from "@/typing";
 import AddToCart from "./add-cart";
 import ProductCard from "@/components/Home/ProductCard";
 
-const ProductDetails = async ({ params }: { params: { id: string } }) => {
+interface PageProps {
+  params: {
+    id: string;
+  };
+  searchParams?: {
+    [key: string]: string | string[] | undefined;
+  };
+}
+
+const ProductDetails = async ({ params }: PageProps) => {
   // Verifica se o ID existe
-  if (!params?.id)
+  if (!params?.id) {
     return <div className="mt-28 text-center">No product ID provided</div>;
+  }
 
   try {
     const singleProduct: Product = await getSingleProduct(params.id);
     const relatedProducts: Product[] = await getProductByCategory(
-      singleProduct?.category || "electronics" // Fallback category
+      singleProduct?.category || "electronics"
     );
 
     // Se o produto não for encontrado
@@ -29,7 +39,7 @@ const ProductDetails = async ({ params }: { params: { id: string } }) => {
     return (
       <div className="mt-28">
         <div className="w-4/5 mx-auto grid grid-cols-1 lg:grid-cols-7 items-center gap-4">
-          {/* Product Image com verificações */}
+          {/* Product Image */}
           {singleProduct?.image && (
             <div className="col-span-3 mb-6 lg:mb-0">
               <Image
@@ -37,6 +47,8 @@ const ProductDetails = async ({ params }: { params: { id: string } }) => {
                 alt={singleProduct.title || "Product image"}
                 width={400}
                 height={400}
+                className="object-contain"
+                priority
               />
             </div>
           )}
@@ -98,9 +110,11 @@ const ProductDetails = async ({ params }: { params: { id: string } }) => {
             Related Products
           </h1>
           <div className="mt-16 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-12">
-            {relatedProducts?.map((product) => (
-              <ProductCard key={product.id} product={product} />
-            ))}
+            {relatedProducts
+              ?.filter((product) => product.id !== singleProduct.id)
+              ?.map((product) => (
+                <ProductCard key={product.id} product={product} />
+              ))}
           </div>
         </div>
       </div>
