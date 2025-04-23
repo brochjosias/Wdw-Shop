@@ -7,13 +7,7 @@ import { Product } from "@/typing";
 import AddToCart from "./add-cart";
 import ProductCard from "@/components/Home/ProductCard";
 
-interface Props {
-  params: {
-    id: string;
-  };
-}
-
-const ProductDetails = async ({ params }: Props) => {
+const ProductDetails = async ({ params }: { params: { id: string } }) => {
   // Verify if ID exists
   if (!params?.id) {
     return <div className="mt-28 text-center">No product ID provided</div>;
