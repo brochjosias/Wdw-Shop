@@ -103,7 +103,7 @@ const ProductCard = ({ product }: Props) => {
             <Button
               size="icon"
               className={`cursor-pointer ${
-                isFavorite ? "bg-red-500" : "bg-gray-200 hover:bg-gray-300"
+                isFavorite ? "bg-red-500" : "bg-gray-400 hover:bg-red-400"
               }`}
               onClick={(e) => {
                 e.preventDefault();
