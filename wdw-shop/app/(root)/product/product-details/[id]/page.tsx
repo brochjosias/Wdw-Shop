@@ -7,17 +7,14 @@ import { Product } from "@/typing";
 import AddToCart from "./add-cart";
 import ProductCard from "@/components/Home/ProductCard";
 
-interface PageProps {
+interface Props {
   params: {
     id: string;
   };
-  searchParams?: {
-    [key: string]: string | string[] | undefined;
-  };
 }
 
-const ProductDetails = async ({ params }: PageProps) => {
-  // Verifica se o ID existe
+const ProductDetails = async ({ params }: Props) => {
+  // Verify if ID exists
   if (!params?.id) {
     return <div className="mt-28 text-center">No product ID provided</div>;
   }
@@ -28,7 +25,7 @@ const ProductDetails = async ({ params }: PageProps) => {
       singleProduct?.category || "electronics"
     );
 
-    // Se o produto não for encontrado
+    // If product not found
     if (!singleProduct) {
       return <div className="mt-28 text-center">Product not found</div>;
     }
