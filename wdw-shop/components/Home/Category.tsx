@@ -13,7 +13,6 @@ const Category = ({ onSelectCategory }: CategoryProps) => {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
 
-  // Efeito para carregar categorias
   useEffect(() => {
     const fetchCategories = async () => {
       try {
@@ -29,11 +28,10 @@ const Category = ({ onSelectCategory }: CategoryProps) => {
     fetchCategories();
   }, []);
 
-  // Efeito para manipular o scroll quando a âncora é acionada
   useEffect(() => {
     const hash = window.location.hash;
     if (hash === "#categories" && titleRef.current) {
-      const offset = 120; // Ajuste este valor conforme necessário
+      const offset = 120;
       const titlePosition = titleRef.current.getBoundingClientRect().top;
       const offsetPosition = titlePosition + window.pageYOffset - offset;
 
@@ -69,9 +67,9 @@ const Category = ({ onSelectCategory }: CategoryProps) => {
 
         <div className="mt-12 w-4/5 mx-auto grid grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
           {/* Botão All Products */}
-          <div
+          <button
             onClick={() => handleCategoryClick(null)}
-            className={`p-4 rounded-lg cursor-pointer text-center hover:scale-105 transition-all duration-300 shadow-md ${
+            className={`p-4 rounded-lg cursor-pointer hover:scale-105 transition-all duration-300 shadow-md flex items-center justify-center min-h-[80px] ${
               selectedCategory === null
                 ? "bg-blue-500 text-white"
                 : "bg-gray-200"
@@ -80,14 +78,14 @@ const Category = ({ onSelectCategory }: CategoryProps) => {
             <h1 className="text-sm sm:text-base md:text-lg font-medium capitalize">
               All Products
             </h1>
-          </div>
+          </button>
 
           {/* Demais categorias */}
           {categories.map((category) => (
-            <div
+            <button
               key={category}
               onClick={() => handleCategoryClick(category)}
-              className={`p-4 rounded-lg cursor-pointer text-center hover:scale-105 transition-all duration-300 shadow-md ${
+              className={`p-4 rounded-lg cursor-pointer hover:scale-105 transition-all duration-300 shadow-md flex items-center justify-center min-h-[80px] ${
                 selectedCategory === category
                   ? "bg-blue-500 text-white"
                   : "bg-gray-200"
@@ -96,11 +94,12 @@ const Category = ({ onSelectCategory }: CategoryProps) => {
               <h1 className="text-sm sm:text-base md:text-lg font-medium capitalize">
                 {category}
               </h1>
-            </div>
+            </button>
           ))}
         </div>
       </div>
     </section>
   );
 };
+
 export default Category;

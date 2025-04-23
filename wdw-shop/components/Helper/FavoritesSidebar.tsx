@@ -28,8 +28,8 @@ const FavoritesSidebar = () => {
   };
 
   return (
-    <div className="mt-6 h-full mb-6 px-4">
-      <SheetTitle className="text-center font-bold text-lg mb-6">
+    <div className="mt-2 h-full mb-6 px-4 overflow-y-auto">
+      <SheetTitle className="text-center font-bold text-lg border-b px-4 py-7 ">
         Your Favorites
       </SheetTitle>
 
@@ -54,16 +54,17 @@ const FavoritesSidebar = () => {
           {favorites.map((item: Product) => (
             <div
               key={item.id}
-              className="pb-4 border-b-2 border-gray-300 border-opacity-60 p-4"
+              className="pb-4 border-b-2 border-gray-200 border-opacity-60 p-4"
             >
               <div className="flex gap-4">
-                <Image
-                  src={item.image}
-                  alt={item.title}
-                  width={60}
-                  height={60}
-                  className="object-cover rounded-md"
-                />
+                <div className="relative w-20 h-20 min-w-[80px]">
+                  <Image
+                    src={item.image}
+                    alt={item.title}
+                    fill
+                    className="object-contain rounded-md"
+                  />
+                </div>
                 <div className="flex-1">
                   <h1 className="text-sm font-semibold line-clamp-2">
                     {item.title}

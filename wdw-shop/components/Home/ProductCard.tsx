@@ -53,25 +53,25 @@ const ProductCard = ({ product }: Props) => {
   };
 
   return (
-    <div className="p-4">
-      <div className="w-[200px] h-[150px]">
+    <div className="w-full max-w-[250px] mx-auto p-4 border rounded-lg shadow-sm hover:shadow-md transition-shadow">
+      <div className="aspect-square w-full relative">
         <Image
           src={product.image}
           alt={product.title}
-          width={100}
-          height={100}
-          className="w-[80%] h-[80%] object-contain"
+          fill
+          className="object-contain"
+          sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 25vw"
         />
       </div>
-      <p className="mt-5 text-xs capitalize text-gray-600">
+      <p className="mt-4 text-xs capitalize text-gray-600">
         {product.category}
       </p>
       <Link href={`/product/product-details/${product.id}`}>
-        <h1 className="text-lg cursor-pointer hover:text-blue-900 transition-all hover:underline sm:w-full sm:truncate mt-2 text-black font-semibold">
+        <h1 className="text-base cursor-pointer hover:text-blue-900 transition-all line-clamp-2 mt-2 text-black font-semibold h-[3rem]">
           {product.title}
         </h1>
       </Link>
-      <div className="flex items-center">
+      <div className="flex items-center mt-1">
         {ratingArray.map((_, index) => (
           <StarIcon
             key={index}
@@ -82,10 +82,10 @@ const ProductCard = ({ product }: Props) => {
         ))}
       </div>
       <div className="flex mt-2 items-center space-x-2">
-        <p className="text-black text-base line-through font-semibold opacity-50">
+        <p className="text-black text-sm line-through font-semibold opacity-50">
           ${(product.price + 10).toFixed(2)}
         </p>
-        <p className="text-black text-lg font-bold opacity-80">
+        <p className="text-black text-base font-bold opacity-80">
           ${product.price.toFixed(2)}
         </p>
       </div>

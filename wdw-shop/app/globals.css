@@ -1,6 +1,18 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
+/* Adicionado: Estilos específicos para scroll no mobile */
+.scroll-mobile {
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-y: contain;
+  overflow-y: auto;
+}
+
+/* Adicionado: Prevenção de scroll em elementos pais */
+.no-scroll {
+  overflow: hidden;
+}
+
 html {
   scroll-behavior: smooth;
 }

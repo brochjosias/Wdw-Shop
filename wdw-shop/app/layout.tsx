@@ -18,7 +18,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Wdw Shop | Ofertas incríveis. Melhores preços do mercado",
+  title: "Wdw Shop | Amazing deals. Best prices on the market",
   description: "Wdw Shop",
 };
 
