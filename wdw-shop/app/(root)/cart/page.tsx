@@ -122,7 +122,7 @@ const Cart = () => {
                       <div className="mt-4 flex gap-3">
                         <Button
                           size="sm"
-                          className="bg-green-600 hover:bg-green-700 text-white"
+                          className="bg-green-600 hover:bg-green-700 text-white cursor-pointer"
                           onClick={() => addItemHandler(item)}
                         >
                           Add More
@@ -130,6 +130,7 @@ const Cart = () => {
                         <Button
                           size="sm"
                           variant="destructive"
+                          className="cursor-pointer"
                           onClick={() => removeItemHandler(item.id)}
                         >
                           Remove

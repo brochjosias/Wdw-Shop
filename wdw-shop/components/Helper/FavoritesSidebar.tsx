@@ -29,7 +29,7 @@ const FavoritesSidebar = () => {
 
   return (
     <div className="mt-2 h-full mb-6 px-4 overflow-y-auto">
-      <SheetTitle className="text-center font-bold text-lg border-b px-4 py-7 ">
+      <SheetTitle className="text-center font-bold text-lg border-b px-4 py-7">
         Your Favorites
       </SheetTitle>
 
@@ -74,10 +74,15 @@ const FavoritesSidebar = () => {
                   </h1>
 
                   <div className="flex items-center justify-between mt-4">
-                    <Button size="sm" onClick={() => addToCartHandler(item)}>
+                    <Button
+                      className="cursor-pointer"
+                      size="sm"
+                      onClick={() => addToCartHandler(item)}
+                    >
                       Add to Cart
                     </Button>
                     <Button
+                      className="cursor-pointer"
                       size="sm"
                       variant="destructive"
                       onClick={() => removeFavoriteHandler(item.id)}

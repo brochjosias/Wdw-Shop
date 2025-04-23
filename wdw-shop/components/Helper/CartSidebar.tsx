@@ -34,7 +34,11 @@ const CartSidebar = () => {
             Your Cart
           </SheetTitle>
           <SheetClose asChild className="ml-auto">
-            <Button variant="ghost" size="icon" className="h-8 w-8">
+            <Button
+              variant="ghost"
+              size="icon"
+              className="h-8 w-8 cursor-pointer"
+            >
               <X className="h-4 w-4" />
             </Button>
           </SheetClose>
@@ -79,7 +83,7 @@ const CartSidebar = () => {
                         <Button
                           size="sm"
                           variant="outline"
-                          className="h-8 w-8 p-0"
+                          className="h-8 w-8 p-0 cursor-pointer"
                           onClick={() =>
                             updateQuantityHandler(
                               item.id,
@@ -96,7 +100,7 @@ const CartSidebar = () => {
                         <Button
                           size="sm"
                           variant="outline"
-                          className="h-8 w-8 p-0"
+                          className="h-8 w-8 p-0 cursor-pointer"
                           onClick={() =>
                             updateQuantityHandler(item.id, item.quantity + 1)
                           }
@@ -108,6 +112,7 @@ const CartSidebar = () => {
                         onClick={() => removeCartHandler(item.id)}
                         size="sm"
                         variant="destructive"
+                        className="cursor-pointer"
                       >
                         Remove
                       </Button>
@@ -128,7 +133,9 @@ const CartSidebar = () => {
           </div>
           <SheetClose asChild>
             <Link href="/cart" className="block">
-              <Button className="w-full">Proceed to Checkout</Button>
+              <Button className="w-full cursor-pointer">
+                Proceed to Checkout
+              </Button>
             </Link>
           </SheetClose>
         </div>
