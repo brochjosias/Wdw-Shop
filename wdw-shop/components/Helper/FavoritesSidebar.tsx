@@ -29,7 +29,7 @@ const FavoritesSidebar = () => {
 
   return (
     <div className="mt-2 h-full mb-6 px-4 overflow-y-auto">
-      <SheetTitle className="text-center font-bold text-lg border-b px-4 py-7">
+      <SheetTitle className="text-center font-bold text-lg border-b px-4 py-7 ">
         Your Favorites
       </SheetTitle>
 
