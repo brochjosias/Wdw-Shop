@@ -6,8 +6,15 @@ import { getProductByCategory, getSingleProduct } from "@/Request/requests";
 import { Product } from "@/typing";
 import AddToCart from "./add-cart";
 import ProductCard from "@/components/Home/ProductCard";
+import { PageProps } from "next";
 
-export default async function Page({ params }: { params: { id: string } }) {
+interface ProductPageParams {
+  id: string;
+}
+
+export default async function ProductDetails({
+  params,
+}: PageProps<ProductPageParams>) {
   // Verify if ID exists
   if (!params?.id) {
     return <div className="mt-28 text-center">No product ID provided</div>;
