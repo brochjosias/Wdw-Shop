@@ -20,6 +20,9 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Wdw Shop | Amazing deals. Best prices on the market",
   description: "Wdw Shop",
+  icons: {
+    icon: "/favicon.ico",
+  },
 };
 
 export default function RootLayout({
