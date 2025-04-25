@@ -1,4 +1,3 @@
-// app/product/product-details/[id]/page.tsx
 import React from "react";
 import Image from "next/image";
 import { StarIcon } from "lucide-react";
@@ -8,18 +7,26 @@ import AddToCart from "./add-cart";
 import ProductCard from "@/components/Home/ProductCard";
 import { Metadata, ResolvingMetadata } from "next";
 
+interface PageProps {
+  params: {
+    id: string;
+  };
+}
+
 export async function generateMetadata(
-  { params }: { params: { id: string } },
+  { params }: PageProps,
   parent: ResolvingMetadata
 ): Promise<Metadata> {
   const previousMetadata = await parent;
 
   return {
-    title: `Produto ${params.id} | ${previousMetadata.title}`,
+    title: `Produto ${params.id} | ${
+      previousMetadata.title?.absolute || "WDW Shop"
+    }`,
   };
 }
 
-export default async function Page({ params }: { params: { id: string } }) {
+export default async function Page({ params }: PageProps) {
   const { id } = params;
 
   if (!id) {
