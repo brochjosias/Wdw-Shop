@@ -6,12 +6,21 @@ import { getProductByCategory, getSingleProduct } from "@/Request/requests";
 import { Product } from "@/typing";
 import AddToCart from "./add-cart";
 import ProductCard from "@/components/Home/ProductCard";
+import { Metadata } from "next";
 
 type PageProps = {
   params: {
     id: string;
   };
 };
+
+export async function generateMetadata({
+  params,
+}: PageProps): Promise<Metadata> {
+  return {
+    title: `Produto ${params.id}`,
+  };
+}
 
 export default async function Page({ params }: PageProps) {
   // Verify if ID exists
