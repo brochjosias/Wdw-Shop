@@ -6,35 +6,28 @@ import { getProductByCategory, getSingleProduct } from "@/Request/requests";
 import { Product } from "@/typing";
 import AddToCart from "./add-cart";
 import ProductCard from "@/components/Home/ProductCard";
-import { Metadata } from "next";
 
-type PageProps = {
-  params: {
-    id: string;
-  };
-};
+// ❌ Removido: import type { InferGetServerSidePropsType } from 'next';
 
-export async function generateMetadata({
-  params,
-}: PageProps): Promise<Metadata> {
+export async function generateMetadata({ params }: { params: { id: string } }) {
   return {
     title: `Produto ${params.id}`,
   };
 }
 
-export default async function Page({ params }: PageProps) {
-  // Verify if ID exists
-  if (!params?.id) {
+export default async function Page({ params }: { params: { id: string } }) {
+  const { id } = params;
+
+  if (!id) {
     return <div className="mt-28 text-center">No product ID provided</div>;
   }
 
   try {
-    const singleProduct: Product = await getSingleProduct(params.id);
+    const singleProduct: Product = await getSingleProduct(id);
     const relatedProducts: Product[] = await getProductByCategory(
       singleProduct?.category || "electronics"
     );
 
-    // If product not found
     if (!singleProduct) {
       return <div className="mt-28 text-center">Product not found</div>;
     }
@@ -117,8 +110,8 @@ export default async function Page({ params }: PageProps) {
           </h1>
           <div className="mt-16 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-12">
             {relatedProducts
-              ?.filter((product) => product.id !== singleProduct.id)
-              ?.map((product) => (
+              ?.filter((product: Product) => product.id !== singleProduct.id)
+              ?.map((product: Product) => (
                 <ProductCard key={product.id} product={product} />
               ))}
           </div>
