@@ -7,8 +7,12 @@ import AddToCart from "./add-cart";
 import ProductCard from "@/components/Home/ProductCard";
 import { Metadata, ResolvingMetadata } from "next";
 
+type GenerateMetadataProps = {
+  params: { id: string };
+};
+
 export async function generateMetadata(
-  { params }: { params: { id: string } },
+  { params }: GenerateMetadataProps,
   parent: ResolvingMetadata
 ): Promise<Metadata> {
   const previousMetadata = await parent;
@@ -20,7 +24,11 @@ export async function generateMetadata(
   };
 }
 
-export default async function Page({ params }: { params: { id: string } }) {
+type PageProps = {
+  params: { id: string };
+};
+
+export default async function ProductDetailsPage({ params }: PageProps) {
   const { id } = params;
 
   if (!id) {
