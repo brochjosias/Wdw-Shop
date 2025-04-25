@@ -6,12 +6,16 @@ import { getProductByCategory, getSingleProduct } from "@/Request/requests";
 import { Product } from "@/typing";
 import AddToCart from "./add-cart";
 import ProductCard from "@/components/Home/ProductCard";
+import { Metadata, ResolvingMetadata } from "next";
 
-// ❌ Removido: import type { InferGetServerSidePropsType } from 'next';
+export async function generateMetadata(
+  { params }: { params: { id: string } },
+  parent: ResolvingMetadata
+): Promise<Metadata> {
+  const previousMetadata = await parent;
 
-export async function generateMetadata({ params }: { params: { id: string } }) {
   return {
-    title: `Produto ${params.id}`,
+    title: `Produto ${params.id} | ${previousMetadata.title}`,
   };
 }
 
