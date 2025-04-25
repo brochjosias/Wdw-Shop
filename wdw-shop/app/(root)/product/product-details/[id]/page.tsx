@@ -7,16 +7,11 @@ import AddToCart from "./add-cart";
 import ProductCard from "@/components/Home/ProductCard";
 import { Metadata, ResolvingMetadata } from "next";
 
-type GenerateMetadataProps = {
-  params: { id: string };
-};
-
 export async function generateMetadata(
-  { params }: GenerateMetadataProps,
+  { params }: { params: { id: string } },
   parent: ResolvingMetadata
 ): Promise<Metadata> {
   const previousMetadata = await parent;
-
   return {
     title: `Produto ${params.id} | ${
       previousMetadata.title?.absolute || "WDW Shop"
@@ -24,11 +19,7 @@ export async function generateMetadata(
   };
 }
 
-type PageProps = {
-  params: { id: string };
-};
-
-export default async function ProductDetailsPage({ params }: PageProps) {
+export default async function Page({ params }: { params: { id: string } }) {
   const { id } = params;
 
   if (!id) {
@@ -51,7 +42,6 @@ export default async function ProductDetailsPage({ params }: PageProps) {
     return (
       <div className="mt-28">
         <div className="w-4/5 mx-auto grid grid-cols-1 lg:grid-cols-7 items-center gap-4">
-          {/* Product Image */}
           {singleProduct?.image && (
             <div className="col-span-3 mb-6 lg:mb-0">
               <Image
@@ -65,7 +55,6 @@ export default async function ProductDetailsPage({ params }: PageProps) {
             </div>
           )}
 
-          {/* Product Content */}
           <div className="col-span-4">
             <h1 className="lg:text-3xl text-2xl font-bold text-black">
               {singleProduct?.title || "No title available"}
@@ -116,7 +105,6 @@ export default async function ProductDetailsPage({ params }: PageProps) {
           </div>
         </div>
 
-        {/* Related Products */}
         <div className="w-4/5 mt-16 mx-auto">
           <h1 className="text-2xl text-black font-semibold">
             Related Products
