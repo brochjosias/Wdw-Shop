@@ -16,7 +16,7 @@ O Wdw-Shop é uma plataforma de e-commerce robusta, ideal para grandes volumes d
 - Integração de Pagamento via PayPal
 - Autenticação Segura com Clerk
 - Gerenciamento de Pedidos
-- Interface Responsiva e Estilizada
+- Interface Responsiva para mobile e tablet
 
 ## Tecnologias Utilizadas
 
