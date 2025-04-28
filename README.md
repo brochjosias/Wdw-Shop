@@ -20,7 +20,7 @@ O Wdw-Shop é uma plataforma de e-commerce robusta, ideal para grandes volumes d
 
 ## Tecnologias Utilizadas
 
-- Next.js 14
+- Next.js
 - TypeScript
 - Redux
 - Tailwind CSS
