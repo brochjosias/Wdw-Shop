@@ -2,7 +2,7 @@
 
 Este é um projeto de loja online desenvolvido para quem deseja criar uma plataforma de compras moderna e escalável do zero.
 
-[Linkedin Post](https://www.linkedin.com/posts/josiasbroch_nextjs-typescript-paypal-activity-7323011781285572609-YGuC/?utm_source=share&utm_medium=member_desktop&rcm=ACoAADlRdAMBKY74vEDZtFxqewys63zNrB0PecY)
+[Video Post on Linkedin](https://www.linkedin.com/posts/josiasbroch_nextjs-typescript-paypal-activity-7323011781285572609-YGuC/?utm_source=share&utm_medium=member_desktop&rcm=ACoAADlRdAMBKY74vEDZtFxqewys63zNrB0PecY)
 
 ## Visão Geral
 
