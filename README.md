@@ -2,6 +2,8 @@
 
 Este é um projeto de loja online desenvolvido para quem deseja criar uma plataforma de compras moderna e escalável do zero.
 
+[Linkedin Post](https://www.linkedin.com/posts/josiasbroch_nextjs-typescript-paypal-activity-7323011781285572609-YGuC/?utm_source=share&utm_medium=member_desktop&rcm=ACoAADlRdAMBKY74vEDZtFxqewys63zNrB0PecY)
+
 ## Visão Geral
 
 O Wdw-Shop é uma plataforma de e-commerce robusta, ideal para grandes volumes de produtos e transações, construída com tecnologias atuais para oferecer alta performance, segurança e uma experiência de compra otimizada. Da navegação por categorias à finalização de pedidos com pagamento integrado via PayPal, tudo foi pensado para atender a uma operação de comércio eletrônico eficiente e dinâmica.
